@@ -69,28 +69,23 @@ public class MigrateDBStep2
 		{
 			if(p instanceof rhp.aof4oop.cs.datamodel_b.Principal)
 			{
-				Principal p_b=new Principal(p.getTitle(),p.getFirstName(),p.getMiddleName(),p.getLastName(),p.getAddress(),p.getPostCode(),p.getTelephoneNumber(),p.getFaxNumber(),p.getMobileNumber(),p.isPassedD32Qualification(),p.isPassedD34Qualification(),p.isPassedD36Qualification());
-				db.store(p_b);
+				db.store(copyPrincipal(p));
 			}
 			else if(p instanceof rhp.aof4oop.cs.datamodel_b.Coordinator)
 			{
-				Coordinator p_b=new Coordinator(p.getTitle(),p.getFirstName(),p.getMiddleName(),p.getLastName(),p.getAddress(),p.getPostCode(),p.getTelephoneNumber(),p.getFaxNumber(),p.getMobileNumber(),p.isPassedD32Qualification(),p.isPassedD34Qualification(),p.isPassedD36Qualification());
-				db.store(p_b);
+				db.store(copyCoordinator(p));
 			}
 			else if(p instanceof rhp.aof4oop.cs.datamodel_b.ExamOfficer)
 			{
-				ExamOfficer p_b=new ExamOfficer(p.getTitle(),p.getFirstName(),p.getMiddleName(),p.getLastName(),p.getAddress(),p.getPostCode(),p.getTelephoneNumber(),p.getFaxNumber(),p.getMobileNumber(),p.isPassedD32Qualification(),p.isPassedD34Qualification(),p.isPassedD36Qualification());
-				db.store(p_b);
-			}
-			else if(p instanceof rhp.aof4oop.cs.datamodel_b.Tutor)
-			{
-				Tutor p_b=new Tutor(p.getTitle(),p.getFirstName(),p.getMiddleName(),p.getLastName(),p.getAddress(),p.getPostCode(),p.getTelephoneNumber(),p.getFaxNumber(),p.getMobileNumber(),p.isPassedD32Qualification(),p.isPassedD34Qualification(),p.isPassedD36Qualification());
-				db.store(p_b);
+				db.store(copyExamOfficer(p));
 			}
 			else if(p instanceof rhp.aof4oop.cs.datamodel_b.Moderator)
 			{
-				Moderator p_b=new Moderator(p.getTitle(),p.getFirstName(),p.getMiddleName(),p.getLastName(),p.getAddress(),p.getPostCode(),p.getTelephoneNumber(),p.getFaxNumber(),p.getMobileNumber(),p.isPassedD32Qualification(),p.isPassedD34Qualification(),p.isPassedD36Qualification());
-				db.store(p_b);
+				db.store(copyModerator(p));
+			}			
+			else if(p instanceof rhp.aof4oop.cs.datamodel_b.Tutor)
+			{
+				db.store(copyTutor(p));
 			}
 			else
 			{
@@ -98,5 +93,25 @@ public class MigrateDBStep2
 			}
 			db.delete(p);
 		}
+	}
+	private static Principal copyPrincipal(rhp.aof4oop.cs.datamodel_b.Staff p)
+	{
+		return new Principal(p.getTitle(),p.getFirstName(),p.getMiddleName(),p.getLastName(),p.getAddress(),p.getPostCode(),p.getTelephoneNumber(),p.getFaxNumber(),p.getMobileNumber(),p.isPassedD32Qualification(),p.isPassedD34Qualification(),p.isPassedD36Qualification());
+	}
+	private static Coordinator copyCoordinator(rhp.aof4oop.cs.datamodel_b.Staff p)
+	{
+		return new Coordinator(p.getTitle(),p.getFirstName(),p.getMiddleName(),p.getLastName(),p.getAddress(),p.getPostCode(),p.getTelephoneNumber(),p.getFaxNumber(),p.getMobileNumber(),p.isPassedD32Qualification(),p.isPassedD34Qualification(),p.isPassedD36Qualification());
+	}
+	private static ExamOfficer copyExamOfficer(rhp.aof4oop.cs.datamodel_b.Staff p)
+	{
+		return new ExamOfficer(p.getTitle(),p.getFirstName(),p.getMiddleName(),p.getLastName(),p.getAddress(),p.getPostCode(),p.getTelephoneNumber(),p.getFaxNumber(),p.getMobileNumber(),p.isPassedD32Qualification(),p.isPassedD34Qualification(),p.isPassedD36Qualification());
+	}
+	private static Moderator copyModerator(rhp.aof4oop.cs.datamodel_b.Staff p)
+	{
+		return new Moderator(p.getTitle(),p.getFirstName(),p.getMiddleName(),p.getLastName(),p.getAddress(),p.getPostCode(),p.getTelephoneNumber(),p.getFaxNumber(),p.getMobileNumber(),p.isPassedD32Qualification(),p.isPassedD34Qualification(),p.isPassedD36Qualification());
+	}
+	private static Tutor copyTutor(rhp.aof4oop.cs.datamodel_b.Staff p)
+	{
+		return new Tutor(p.getTitle(),p.getFirstName(),p.getMiddleName(),p.getLastName(),p.getAddress(),p.getPostCode(),p.getTelephoneNumber(),p.getFaxNumber(),p.getMobileNumber(),p.isPassedD32Qualification(),p.isPassedD34Qualification(),p.isPassedD36Qualification());
 	}
 }
